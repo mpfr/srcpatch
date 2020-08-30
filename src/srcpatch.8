@@ -1,0 +1,103 @@
+.\"
+.\" Copyright (c) 2020 Matthias Pressfreund
+.\"
+.\" Permission to use, copy, modify, and distribute this software for any
+.\" purpose with or without fee is hereby granted, provided that the above
+.\" copyright notice and this permission notice appear in all copies.
+.\"
+.\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+.\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+.\" ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+.\" WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+.\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+.\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.\"
+.Dd $Mdocdate: August 30 2020 $
+.Dt SRCPATCH 8
+.Os
+.Sh NAME
+.Nm srcpatch
+.Nd patch source trees from
+.Xr syspatch 8
+generated files
+.Sh SYNOPSIS
+.Nm
+.Op Fl c | l | R | r
+.Sh DESCRIPTION
+.Nm
+applies patches to local
+.Dv /usr/src
+and
+.Dv /usr/xenocara
+source trees from
+.Xr diff 1
+files previously created when installing system binary patches by means of
+.Xr syspatch 8 .
+.Pp
+If called without options,
+.Nm
+will apply all missing source patches by means of
+.Xr patch 1 ,
+after checking their signature with
+.Xr signify 1 .
+The output of
+.Xr patch 1
+will be saved into the same directory where the signed
+.Xr diff 1
+files supplied by
+.Xr syspatch 8
+reside, using the same file name with the extension
+.Dv .log
+appended.
+Additionally, appropriate backup files used to revert applied patches will be
+created next to the modified files in the source trees.
+.Pp
+The options (following
+.Xr syspath 8 )
+are as follows:
+.Bl -tag -width Ds
+.It Fl c
+List available source patches; suitable for
+.Xr cron 8 .
+.It Fl l
+List installed source patches.
+.It Fl R
+Revert all source patches.
+.It Fl r
+Revert the most recently installed source patch.
+.El
+.Sh FILES
+.Bl -tag -width "/var/syspatch/*" -compact
+.It Pa /var/syspatch/*
+Directories containing the signed
+.Xr diff 1
+used for applying source patches and saving the corresponding
+.Xr patch 1
+log file to.
+.El
+.Sh EXIT STATUS
+.Nm
+exits 0 on success and >0 in case and error occurred.
+.Sh SEE ALSO
+.Xr diff 1 ,
+.Xr patch 1 ,
+.Xr signify 1 ,
+.Xr syspatch 8
+.Sh HISTORY
+.Nm
+first appeared on
+.Lk https://github.com/mpfr/srcpatch/ GitHub
+in August, 2020.
+.Sh AUTHORS
+.An -nosplit
+.Nm
+was written by
+.An Matthias Pressfreund .
+.Sh CAVEATS
+.Nm
+strongly depends on the files created by
+.Xr syspatch 8 .
+If binary patches get reverted, information required to revert source patches
+will be deleted as well.
+Therefore, source patches should always get reverted prior to binay patches.

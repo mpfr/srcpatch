@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<!-- This is an automatically generated file.  Do not edit.
+   Copyright (c) 2020 Matthias Pressfreund
+  
+   Permission to use, copy, modify, and distribute this software for any
+   purpose with or without fee is hereby granted, provided that the above
+   copyright notice and this permission notice appear in all copies.
+  
+   THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+   WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+   MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+   ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+   WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+   ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+   OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+   -->
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="mandoc.css" type="text/css" media="all"/>
+  <title>SRCPATCH(8)</title>
+</head>
+<body>
+<table class="head">
+  <tr>
+    <td class="head-ltitle">SRCPATCH(8)</td>
+    <td class="head-vol">System Manager's Manual</td>
+    <td class="head-rtitle">SRCPATCH(8)</td>
+  </tr>
+</table>
+<div class="manual-text">
+<section class="Sh">
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<p class="Pp"><code class="Nm">srcpatch</code> &#x2014; <span class="Nd">patch
+    source trees from
+    <a class="Xr" href="http://man.openbsd.org/syspatch.8">syspatch(8)</a>
+    generated files</span></p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<table class="Nm">
+  <tr>
+    <td><code class="Nm">srcpatch</code></td>
+    <td>[<code class="Fl">-c</code> | <code class="Fl">-l</code> |
+      <code class="Fl">-R</code> | <code class="Fl">-r</code>]</td>
+  </tr>
+</table>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<p class="Pp"><code class="Nm">srcpatch</code> applies patches to local
+    <code class="Dv">/usr/src</code> and <code class="Dv">/usr/xenocara</code>
+    source trees from
+    <a class="Xr" href="http://man.openbsd.org/diff.1">diff(1)</a> files
+    previously created when installing system binary patches by means of
+    <a class="Xr" href="http://man.openbsd.org/syspatch.8">syspatch(8)</a>.</p>
+<p class="Pp">If called without options, <code class="Nm">srcpatch</code> will
+    apply all missing source patches by means of
+    <a class="Xr" href="http://man.openbsd.org/patch.1">patch(1)</a>, after
+    checking their signature with
+    <a class="Xr" href="http://man.openbsd.org/signify.1">signify(1)</a>. The
+    output of <a class="Xr" href="http://man.openbsd.org/patch.1">patch(1)</a>
+    will be saved into the same directory where the signed
+    <a class="Xr" href="http://man.openbsd.org/diff.1">diff(1)</a> files
+    supplied by
+    <a class="Xr" href="http://man.openbsd.org/syspatch.8">syspatch(8)</a>
+    reside, using the same file name with the extension
+    <code class="Dv">.log</code> appended. Additionally, appropriate backup
+    files used to revert applied patches will be created next to the modified
+    files in the source trees.</p>
+<p class="Pp">The options (following
+    <a class="Xr" href="http://man.openbsd.org/syspath.8">syspath(8)</a>) are as
+    follows:</p>
+<dl class="Bl-tag">
+  <dt id="c"><a class="permalink" href="#c"><code class="Fl">-c</code></a></dt>
+  <dd>List available source patches; suitable for
+      <a class="Xr" href="http://man.openbsd.org/cron.8">cron(8)</a>.</dd>
+  <dt id="l"><a class="permalink" href="#l"><code class="Fl">-l</code></a></dt>
+  <dd>List installed source patches.</dd>
+  <dt id="R"><a class="permalink" href="#R"><code class="Fl">-R</code></a></dt>
+  <dd>Revert all source patches.</dd>
+  <dt id="r"><a class="permalink" href="#r"><code class="Fl">-r</code></a></dt>
+  <dd>Revert the most recently installed source patch.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="FILES"><a class="permalink" href="#FILES">FILES</a></h1>
+<dl class="Bl-tag Bl-compact">
+  <dt><span class="Pa">/var/syspatch/*</span></dt>
+  <dd>Directories containing the signed
+      <a class="Xr" href="http://man.openbsd.org/diff.1">diff(1)</a> used for
+      applying source patches and saving the corresponding
+      <a class="Xr" href="http://man.openbsd.org/patch.1">patch(1)</a> log file
+      to.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
+  STATUS</a></h1>
+<p class="Pp"><code class="Nm">srcpatch</code> exits 0 on success and &gt;0 in
+    case and error occurred.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp"><a class="Xr" href="http://man.openbsd.org/diff.1">diff(1)</a>,
+    <a class="Xr" href="http://man.openbsd.org/patch.1">patch(1)</a>,
+    <a class="Xr" href="http://man.openbsd.org/signify.1">signify(1)</a>,
+    <a class="Xr" href="http://man.openbsd.org/syspatch.8">syspatch(8)</a></p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="HISTORY"><a class="permalink" href="#HISTORY">HISTORY</a></h1>
+<p class="Pp"><code class="Nm">srcpatch</code> first appeared on
+    <a class="Lk" href="https://github.com/mpfr/srcpatch/">GitHub</a> in August,
+    2020.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="AUTHORS"><a class="permalink" href="#AUTHORS">AUTHORS</a></h1>
+<p class="Pp"><code class="Nm">srcpatch</code> was written by
+    <span class="An">Matthias Pressfreund</span>.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="CAVEATS"><a class="permalink" href="#CAVEATS">CAVEATS</a></h1>
+<p class="Pp"><code class="Nm">srcpatch</code> strongly depends on the files
+    created by
+    <a class="Xr" href="http://man.openbsd.org/syspatch.8">syspatch(8)</a>. If
+    binary patches get reverted, information required to revert source patches
+    will be deleted as well. Therefore, source patches should always get
+    reverted prior to binay patches.</p>
+</section>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">August 30, 2020</td>
+    <td class="foot-os">OpenBSD</td>
+  </tr>
+</table>
+</body>
+</html>
