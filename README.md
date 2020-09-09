@@ -20,7 +20,7 @@ $
 Get the sources downloaded and extracted.
 
 ```
-$ ftp -o - https://codeload.github.com/mpfr/srcpatch/tar.gz/master | tar xzvf -
+$ ftp -Vo - https://codeload.github.com/mpfr/srcpatch/tar.gz/master | tar xzvf -
 srcpatch-master
 srcpatch-master/README.md
 srcpatch-master/docs
