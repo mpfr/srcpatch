@@ -17,7 +17,6 @@
 
 patchdir='/var/syspatch'
 osver=$(uname -r | tr -d .)
-pubsig="/etc/signify/openbsd-${osver}-base.pub"
 srcdirs='/usr/{src,xenocara}'
 
 usage()
@@ -26,40 +25,59 @@ usage()
 	exit 1
 }
 
-ls_installed()
+patches()
 {
-	local patch name logfile
-	for patch in ${patchdir}/${osver}-+([[:digit:]])_+([[:alnum:]_]); do
-		name=${patch##*/${osver}-}
-		logfile=${patch}/${name}.patch.sig.log
-		[[ -f ${logfile} ]] && echo ${name}
+	local _patch _name _filter=$1
+	for _patch in ${patchdir}/${osver}-+([[:digit:]])_+([[:alnum:]_]); do
+		_name=${_patch##*/${osver}-}
+		${_filter} ${_patch} ${_name}
 	done | sort -V
 }
 
-ls_available()
+installed()
 {
-	local patch name sigfile logfile
-	for patch in ${patchdir}/${osver}-+([[:digit:]])_+([[:alnum:]_]); do
-		name=${patch##*/${osver}-}
-		sigfile=${patch}/${name}.patch.sig
-		logfile=${sigfile}.log
-		[[ -f ${sigfile} && ! -f ${logfile} ]] && echo ${name}
-	done | sort -V
+	[[ -f $1/$2.patch.sig.log ]] && echo $2
+}
+
+available()
+{
+	local _sigfile=$1/$2.patch.sig
+	[[ -f ${_sigfile} && ! -f ${_sigfile}.log ]] && echo $2
+}
+
+path_diff()
+{
+	echo "${patchdir}/${osver}-$1/$1.patch.sig"
+}
+
+path_src()
+{
+	echo $(sed -n 's/^.*cd \(.*\) && patch .*$/\1/p' $1)
 }
 
 revert_recent()
 {
-	local filelist file orig
-	local patch=$(ls_installed | tail -1)
-	local diff=${patchdir}/${osver}-${patch}/*.patch.sig
-	echo -n "Reverting ${patch} ... "
-	filelist=$(sed -n 's/^RCS file\: \/cvs\(.*\)\,v$/\/usr\1/p' ${diff})
-	for file in ${filelist}; do
-		orig=${file}.orig~${patch}
-		[[ -f ${orig} ]] && mv ${orig} ${file} || rm -f ${file}
+	local _patch=$(patches installed | tail -1)
+	[[ -n ${_patch} ]] || return 0
+
+	local _filelist _file _orig
+	local _diff=$(path_diff ${_patch})
+	local _src=$(path_src ${_diff} | sed 's/\//\\\//g')
+	echo -n "Reverting ${_patch} ... "
+	_filelist=$(sed -n "s/^Index\: \(.*\)$/${_src}\/\1/p" ${_diff})
+	for _file in ${_filelist}; do
+		_orig=${_file}.orig~${_patch}
+		[[ -f ${_orig} ]] && mv ${_orig} ${_file} || rm -f ${_file}
 	done
-	rm -f ${diff}.log
+	rm -f ${_diff}.log
 	echo 'Done.'
+}
+
+revert_all()
+{
+	while [[ -n $(patches installed) ]]; do
+		revert_recent
+	done
 }
 
 if [[ $((id -u)) != 0 ]]; then
@@ -78,9 +96,9 @@ arg=$@
 ((${#arg} > 2)) && usage
 while getopts clRr arg; do
 	case ${arg} in
-	c)	ls_available;;
-	l)	ls_installed;;
-	R)	while [[ -n $(ls_installed) ]]; do revert_recent; done;;
+	c)	patches available;;
+	l)	patches installed;;
+	R)	revert_all;;
 	r)	revert_recent;;
 	*)	usage;;
 	esac
@@ -88,12 +106,12 @@ done
 
 (($# > 0)) && exit 0
 
-for patch in $(ls_available); do
-	diff=${patchdir}/${osver}-${patch}/${patch}.patch.sig
+for patch in $(patches available); do
+	diff=$(path_diff ${patch})
+	src=$(path_src ${diff})
 	echo -n "Applying ${patch} ... "
-	signify -Vep ${pubsig} -x ${diff} -m - | (cd $(sed -n \
-		's/.*cd \(.*\) && patch -p0.*/\1/p' ${diff}) && \
-		patch -p0 -z.orig~${patch}) > ${diff}.log
+	signify -Vep /etc/signify/openbsd-${osver}-base.pub -x ${diff} -m - \
+		| patch -d ${src} -f -p0 -z .orig~${patch} > ${diff}.log
 	if [[ $? -ne 0 ]]; then
 		echo 'Failed.'
 		mv ${diff}.log ${diff}.log.err
