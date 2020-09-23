@@ -64,7 +64,7 @@ revert_recent()
 	local _diff=$(path_diff ${_patch})
 	local _src=$(path_src ${_diff} | sed 's/\//\\\//g')
 	echo -n "Reverting ${_patch} ... "
-	_filelist=$(sed -n "s/^Index\: \(.*\)$/${_src}\/\1/p" ${_diff})
+	_filelist=$(sed -n "s/^Index: \(.*\)$/${_src}\/\1/p" ${_diff})
 	for _file in ${_filelist}; do
 		_orig=${_file}.orig~${_patch}
 		[[ -f ${_orig} ]] && mv ${_orig} ${_file} || rm -f ${_file}

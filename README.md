@@ -20,25 +20,25 @@ $
 Get the sources downloaded and extracted.
 
 ```
-$ ftp -Vo - https://codeload.github.com/mpfr/srcpatch/tar.gz/master | tar xzvf -
-srcpatch-master
-srcpatch-master/README.md
-srcpatch-master/docs
-srcpatch-master/docs/mandoc.css
-srcpatch-master/docs/srcpatch.8.html
-srcpatch-master/src
-srcpatch-master/src/Makefile
-srcpatch-master/src/srcpatch.8
-srcpatch-master/src/srcpatch.sh
+$ ftp -Vo - https://codeload.github.com/mpfr/srcpatch/tar.gz/main | tar xzvf -
+srcpatch-main
+srcpatch-main/README.md
+srcpatch-main/docs
+srcpatch-main/docs/mandoc.css
+srcpatch-main/docs/srcpatch.8.html
+srcpatch-main/src
+srcpatch-main/src/Makefile
+srcpatch-main/src/srcpatch.8
+srcpatch-main/src/srcpatch.sh
 $
 ```
 
 Install tool and manpage.
 
 ```
-$ cd srcpatch-master/src
+$ cd srcpatch-main/src
 $ doas make install
-install -c -o root -g bin -m 555  /home/mpfr/srcpatch-master/src/srcpatch.sh ...
+install -c -o root -g bin -m 555  /home/mpfr/srcpatch-main/src/srcpatch.sh ...
 install -c -o root -g bin -m 444  srcpatch.8 ...
 $
 ```
