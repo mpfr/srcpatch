@@ -14,14 +14,15 @@ permit nopass mpfr
 $ cd
 $ pwd
 /home/mpfr
-$
 ```
 
 Get the sources downloaded and extracted.
 
 ```
+$ rm -rf srcpatch-main/
 $ ftp -Vo - https://codeload.github.com/mpfr/srcpatch/tar.gz/main | tar xzvf -
 srcpatch-main
+srcpatch-main/LICENSE
 srcpatch-main/README.md
 srcpatch-main/docs
 srcpatch-main/docs/mandoc.css
@@ -30,7 +31,6 @@ srcpatch-main/src
 srcpatch-main/src/Makefile
 srcpatch-main/src/srcpatch.8
 srcpatch-main/src/srcpatch.sh
-$
 ```
 
 Install tool and manpage.
@@ -40,7 +40,6 @@ $ cd srcpatch-main/src
 $ doas make install
 install -c -o root -g bin -m 555  /home/mpfr/srcpatch-main/src/srcpatch.sh ...
 install -c -o root -g bin -m 444  srcpatch.8 ...
-$
 ```
 
 ## How to uninstall
@@ -48,5 +47,4 @@ $
 ```
 $ doas rm /usr/local/man/man8/srcpatch.8
 $ doas rm /usr/local/sbin/srcpatch
-$
 ```
