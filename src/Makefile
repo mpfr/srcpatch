@@ -1,13 +1,13 @@
 
-MAN=    srcpatch.8
+MAN=		srcpatch.8
 
-SCRIPT= srcpatch.sh
+SCRIPT=		srcpatch
 
 BINDIR?=	/usr/local/sbin
 MANDIR?=	/usr/local/man/man
 
 realinstall:
 	${INSTALL} ${INSTALL_COPY} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
-		${.CURDIR}/${SCRIPT} ${DESTDIR}${BINDIR}/srcpatch
+		${.CURDIR}/${SCRIPT}.sh ${DESTDIR}${BINDIR}/${SCRIPT}
 
 .include <bsd.prog.mk>
