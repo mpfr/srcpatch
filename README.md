@@ -2,8 +2,6 @@
 
 Keeps source trees up-to-date just by applying the patch files provided en passant by the [syspatch(8)](http://man.openbsd.org/syspatch) utility.
 
-For further information, please have a look at the [manpage](https://mpfr.github.io/srcpatch/srcpatch.8.html).
-
 Other branches available:
 * [current](https://github.com/mpfr/srcpatch/tree/current)
 
@@ -44,6 +42,8 @@ $ doas make install
 install -c -o root -g bin -m 555  /home/mpfr/srcpatch-6.7-stable/src/srcpatch.sh ...
 install -c -o root -g bin -m 444  srcpatch.8 ...
 ```
+
+Besides on the console, the manpage is also available by pointing your browser to `srcpatch-6.7-stable/docs/srcpatch.8.html`.
 
 ## How to uninstall
 
