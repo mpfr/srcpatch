@@ -2,7 +2,10 @@
 
 Keeps source trees up-to-date just by applying the patch files provided en passant by the [syspatch(8)](http://man.openbsd.org/syspatch) utility.
 
-For more information, just have a look at the [manpage](https://mpfr.github.io/srcpatch/srcpatch.8.html).
+For further information, please have a look at the [manpage](https://mpfr.github.io/srcpatch/srcpatch.8.html).
+
+Other branches available:
+* [current](https://github.com/mpfr/srcpatch/tree/current)
 
 ## How to install
 
@@ -19,26 +22,26 @@ $ pwd
 Get the sources downloaded and extracted.
 
 ```
-$ rm -rf srcpatch-current/
-$ ftp -Vo - https://codeload.github.com/mpfr/srcpatch/tar.gz/current | tar xzvf -
-srcpatch-current
-srcpatch-current/LICENSE
-srcpatch-current/README.md
-srcpatch-current/docs
-srcpatch-current/docs/mandoc.css
-srcpatch-current/docs/srcpatch.8.html
-srcpatch-current/src
-srcpatch-current/src/Makefile
-srcpatch-current/src/srcpatch.8
-srcpatch-current/src/srcpatch.sh
+$ rm -rf srcpatch-6.7-stable/
+$ ftp -Vo - https://codeload.github.com/mpfr/srcpatch/tar.gz/6.7-stable | tar xzvf -
+srcpatch-6.7-stable
+srcpatch-6.7-stable/LICENSE
+srcpatch-6.7-stable/README.md
+srcpatch-6.7-stable/docs
+srcpatch-6.7-stable/docs/mandoc.css
+srcpatch-6.7-stable/docs/srcpatch.8.html
+srcpatch-6.7-stable/src
+srcpatch-6.7-stable/src/Makefile
+srcpatch-6.7-stable/src/srcpatch.8
+srcpatch-6.7-stable/src/srcpatch.sh
 ```
 
 Install tool and manpage.
 
 ```
-$ cd srcpatch-current/src
+$ cd srcpatch-6.7-stable/src
 $ doas make install
-install -c -o root -g bin -m 555  /home/mpfr/srcpatch-current/src/srcpatch.sh ...
+install -c -o root -g bin -m 555  /home/mpfr/srcpatch-6.7-stable/src/srcpatch.sh ...
 install -c -o root -g bin -m 444  srcpatch.8 ...
 ```
 
