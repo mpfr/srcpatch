@@ -2,10 +2,10 @@
 
 Keeps source trees up-to-date just by applying the patch files provided en passant by the [syspatch(8)](http://man.openbsd.org/syspatch) utility.
 
-Other branches available:
-* [current](https://github.com/mpfr/srcpatch/tree/current)
-
 ## How to install
+
+Make sure you're running `OpenBSD 6.7-stable`. Otherwise, one of the following branches might be more appropriate:
+* [current](https://github.com/mpfr/srcpatch)
 
 Make sure your user has sufficient `doas` permissions. To start, `cd` into the user's home directory, here `/home/mpfr`.
 
