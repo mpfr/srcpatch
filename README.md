@@ -44,7 +44,7 @@ install -c -o root -g bin -m 555  /home/mpfr/srcpatch-6.8-stable/src/srcpatch.sh
 install -c -o root -g bin -m 444  srcpatch.8 ...
 ```
 
-Besides on the console, the manpage is also available by pointing your browser to `pkg_depts-6.8-stable/docs/pkg_depts.1.html`.
+Besides on the console, the manpage is also available by pointing your browser to `srcpatch-6.8-stable/docs/srcpatch.8.html`.
 
 ## How to uninstall
 
