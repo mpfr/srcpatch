@@ -8,20 +8,20 @@ Make sure you're running `OpenBSD 6.8-stable`. Otherwise, one of the following b
 * [current](https://github.com/mpfr/srcpatch)
 * [6.7-stable](https://github.com/mpfr/srcpatch/tree/6.7-stable)
 
-Make sure your user has sufficient `doas` permissions. To start, `cd` into the user's home directory, here `/home/mpfr`.
+Then, make sure your user (e.g. `mpfr`) has sufficient `doas` permissions.
 
 ```
 $ cat /etc/doas.conf
 permit nopass mpfr
+```
+
+Download and extract the source files into the user's home directory, here `/home/mpfr`.
+
+```
 $ cd
 $ pwd
 /home/mpfr
-```
-
-Get the sources downloaded and extracted.
-
-```
-$ rm -rf srcpatch-6.8-stable/
+$ doas rm -rf srcpatch-6.8-stable/
 $ ftp -Vo - https://codeload.github.com/mpfr/srcpatch/tar.gz/6.8-stable | tar xzvf -
 srcpatch-6.8-stable
 srcpatch-6.8-stable/LICENSE
@@ -49,6 +49,7 @@ Besides on the console, the manpage is also available by pointing your browser t
 ## How to uninstall
 
 ```
-$ doas rm /usr/local/man/man8/srcpatch.8
-$ doas rm /usr/local/sbin/srcpatch
+$ cd ~/srcpatch-6.8-stable/src
+$ doas make uninstall
+$ doas rm /usr/local/sbin/srcpatch /usr/local/man/man8/srcpatch.8
 ```
