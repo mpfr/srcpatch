@@ -6,24 +6,24 @@ For further information, please have a look at the [manpage](https://mpfr.github
 
 ## How to install
 
-Make sure you're running `OpenBSD-current`. Otherwise, one of the following branches might be more appropriate:
+First of all, make sure you're running `OpenBSD-current`. Otherwise, one of the following branches might be more appropriate:
 * [6.8-stable](https://github.com/mpfr/srcpatch/tree/6.8-stable)
 * [6.7-stable](https://github.com/mpfr/srcpatch/tree/6.7-stable)
 
-Make sure your user has sufficient `doas` permissions. To start, `cd` into the user's home directory, here `/home/mpfr`.
+Then, make sure your user (e.g. `mpfr`) has sufficient `doas` permissions.
 
 ```
 $ cat /etc/doas.conf
 permit nopass mpfr
+```
+
+Download and extract the source files into the user's home directory, here `/home/mpfr`.
+
+```
 $ cd
 $ pwd
 /home/mpfr
-```
-
-Get the sources downloaded and extracted.
-
-```
-$ rm -rf srcpatch-current/
+$ doas rm -rf srcpatch-current/
 $ ftp -Vo - https://codeload.github.com/mpfr/srcpatch/tar.gz/current | tar xzvf -
 srcpatch-current
 srcpatch-current/LICENSE
@@ -49,6 +49,7 @@ install -c -o root -g bin -m 444  srcpatch.8 ...
 ## How to uninstall
 
 ```
-$ doas rm /usr/local/man/man8/srcpatch.8
-$ doas rm /usr/local/sbin/srcpatch
+$ cd ~/srcpatch-current/src
+$ doas make uninstall
+rm /usr/local/sbin/srcpatch /usr/local/man/man8/srcpatch.8
 ```
