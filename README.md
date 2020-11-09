@@ -5,7 +5,6 @@ Keeps source trees up-to-date just by applying the patch files provided en passa
 ## How to install
 
 Make sure you're running `OpenBSD 6.7-stable`. Otherwise, one of the following branches might be more appropriate:
-* [current](https://github.com/mpfr/srcpatch)
 * [6.8-stable](https://github.com/mpfr/srcpatch/tree/6.8-stable)
 
 Then, make sure your user (e.g. `mpfr`) has sufficient `doas` permissions.
