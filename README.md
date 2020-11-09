@@ -6,50 +6,8 @@ For further information, please have a look at the [manpage](https://mpfr.github
 
 ## How to install
 
-First of all, make sure you're running `OpenBSD-current`. Otherwise, one of the following branches might be more appropriate:
+If you are running `OpenBSD-current`, installing `srcpatch` is not supported as it strongly depends on the `syspatch(8)` utility which solely works on official releases. Hence, this is just a development-only branch just reflecting the ongoing `OpenBSD` development process.
+
+In case you are running an official release, though, one of the following branches might be more appropriate:
 * [6.8-stable](https://github.com/mpfr/srcpatch/tree/6.8-stable)
 * [6.7-stable](https://github.com/mpfr/srcpatch/tree/6.7-stable)
-
-Then, make sure your user (e.g. `mpfr`) has sufficient `doas` permissions.
-
-```
-$ cat /etc/doas.conf
-permit nopass mpfr
-```
-
-Download and extract the source files into the user's home directory, here `/home/mpfr`.
-
-```
-$ cd
-$ pwd
-/home/mpfr
-$ doas rm -rf srcpatch-current/
-$ ftp -Vo - https://codeload.github.com/mpfr/srcpatch/tar.gz/current | tar xzvf -
-srcpatch-current
-srcpatch-current/LICENSE
-srcpatch-current/README.md
-srcpatch-current/docs
-srcpatch-current/docs/mandoc.css
-srcpatch-current/docs/srcpatch.8.html
-srcpatch-current/src
-srcpatch-current/src/Makefile
-srcpatch-current/src/srcpatch.8
-srcpatch-current/src/srcpatch.sh
-```
-
-Install tool and manpage.
-
-```
-$ cd srcpatch-current/src
-$ doas make install
-install -c -o root -g bin -m 555  /home/mpfr/srcpatch-current/src/srcpatch.sh ...
-install -c -o root -g bin -m 444  srcpatch.8 ...
-```
-
-## How to uninstall
-
-```
-$ cd ~/srcpatch-current/src
-$ doas make uninstall
-rm /usr/local/sbin/srcpatch /usr/local/man/man8/srcpatch.8
-```
