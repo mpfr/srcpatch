@@ -50,5 +50,5 @@ Besides on the console, the manpage is also available by pointing your browser t
 ```
 $ cd ~/srcpatch-6.8-stable/src
 $ doas make uninstall
-$ doas rm /usr/local/sbin/srcpatch /usr/local/man/man8/srcpatch.8
+rm /usr/local/sbin/srcpatch /usr/local/man/man8/srcpatch.8
 ```
