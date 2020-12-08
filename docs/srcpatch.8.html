@@ -69,8 +69,8 @@
     files used to revert applied patches will be created next to the modified
     files in the source trees.</p>
 <p class="Pp">The options (following
-    <a class="Xr" href="http://man.openbsd.org/syspatch.8">syspatch(8)</a>) are as
-    follows:</p>
+    <a class="Xr" href="http://man.openbsd.org/syspatch.8">syspatch(8)</a>) are
+    as follows:</p>
 <dl class="Bl-tag">
   <dt id="c"><a class="permalink" href="#c"><code class="Fl">-c</code></a></dt>
   <dd>List available source patches; suitable for
@@ -98,7 +98,10 @@
 <h1 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
   STATUS</a></h1>
 <p class="Pp"><code class="Nm">srcpatch</code> exits 0 on success and &gt;0 in
-    case and error occurred.</p>
+    case and error occurred. In particular, and again following
+    <a class="Xr" href="http://man.openbsd.org/syspatch.8">syspatch(8)</a>, exit
+    status 2 indicates that applying source patches was requested but additional
+    patch was installed.</p>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
@@ -131,7 +134,7 @@
 </div>
 <table class="foot">
   <tr>
-    <td class="foot-date">August 30, 2020</td>
+    <td class="foot-date">December 8, 2020</td>
     <td class="foot-os">OpenBSD</td>
   </tr>
 </table>

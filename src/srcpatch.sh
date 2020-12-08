@@ -106,7 +106,10 @@ done
 
 (($# > 0)) && exit 0
 
-for patch in $(patches available); do
+avail=$(patches available)
+[[ -n ${avail} ]] || exit 2
+
+for patch in ${avail}; do
 	diff=$(path_diff ${patch})
 	src=$(path_src ${diff})
 	echo -n "Applying ${patch} ... "
