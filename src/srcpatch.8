@@ -13,7 +13,7 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: August 30 2020 $
+.Dd $Mdocdate: December 8 2020 $
 .Dt SRCPATCH 8
 .Os
 .Sh NAME
@@ -79,6 +79,10 @@ log file to.
 .Sh EXIT STATUS
 .Nm
 exits 0 on success and >0 in case and error occurred.
+In particular, and again following
+.Xr syspatch 8 ,
+exit status 2 indicates that applying source patches was requested but
+additional patch was installed.
 .Sh SEE ALSO
 .Xr diff 1 ,
 .Xr patch 1 ,
