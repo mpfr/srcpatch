@@ -28,7 +28,6 @@ srcpatch-6.9-stable
 srcpatch-6.9-stable/LICENSE
 srcpatch-6.9-stable/README.md
 srcpatch-6.9-stable/docs
-srcpatch-6.9-stable/docs/mandoc.css
 srcpatch-6.9-stable/docs/srcpatch.8.html
 srcpatch-6.9-stable/src
 srcpatch-6.9-stable/src/Makefile
