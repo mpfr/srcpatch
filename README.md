@@ -2,7 +2,7 @@
 
 Keeps source trees up-to-date just by applying the patch files provided en passant by the [syspatch(8)](http://man.openbsd.org/syspatch) utility.
 
-For further information, please have a look at the [manpage](https://mpfr.github.io/srcpatch/srcpatch.8.html).
+For further information, please have a look at the [manpage](https://mpfr.net/man/srcpatch/current/srcpatch.8.html).
 
 ## General information
 
