@@ -7,7 +7,7 @@ For further information, please have a look at the [manpage](https://mpfr.net/ma
 ## How to install
 
 Make sure you're running `OpenBSD 7.0-stable`. Otherwise, one of the following branches might be more appropriate:
-* [6.9-stable](https://github.com/mpfr/srcpatch/tree/6.9-stable)
+* [7.1-stable](https://github.com/mpfr/srcpatch/tree/7.1-stable)
 
 Then, make sure your user (e.g. `mpfr`) has sufficient `doas` permissions.
 
