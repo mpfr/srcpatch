@@ -9,5 +9,5 @@ For further information, please have a look at the [manpage](https://mpfr.net/ma
 If you are running `OpenBSD-current`, installing `srcpatch` is not supported as it strongly depends on the `syspatch(8)` utility which solely works on official releases. Hence, this is a development-only branch that is used to follow the ongoing `OpenBSD` development process.
 
 In case you are running an official release, though, one of the following branches might suit your needs:
+* [7.2-stable](https://github.com/mpfr/srcpatch/tree/7.2-stable)
 * [7.1-stable](https://github.com/mpfr/srcpatch/tree/7.1-stable)
-* [7.0-stable](https://github.com/mpfr/srcpatch/tree/7.0-stable)
