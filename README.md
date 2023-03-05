@@ -1,3 +1,6 @@
+| :warning: With the release of OpenBSD version 7.3, this branch will reach its end of life and will no longer be maintained.
+| --- |
+
 # srcpatch
 
 Keeps source trees up-to-date just by applying the patch files provided en passant by the [syspatch(8)](http://man.openbsd.org/syspatch) utility.
