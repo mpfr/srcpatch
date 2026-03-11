@@ -115,7 +115,7 @@ for patch in ${avail}; do
 	echo -n "Applying ${patch} ... "
 	[[ -z ${src} ]] && touch ${diff}.log || signify -Vep \
 		/etc/signify/openbsd-${osver}-base.pub -x ${diff} -m - \
-		| patch -d ${src} -f -p0 -z .orig~${patch} > ${diff}.log
+		| patch -d ${src} -f -p0 -z .orig~${patch} >${diff}.log 2>&1
 	if [[ $? -ne 0 ]]; then
 		echo 'Failed.'
 		mv ${diff}.log ${diff}.log.err
