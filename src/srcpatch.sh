@@ -1,6 +1,6 @@
 #!/bin/ksh
 #
-# Copyright (c) 2020 Matthias Pressfreund
+# Copyright (c) 2020 - 2026 Matthias Pressfreund
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -113,12 +113,14 @@ for patch in ${avail}; do
 	diff=$(path_diff ${patch})
 	src=$(path_src ${diff})
 	echo -n "Applying ${patch} ... "
-	signify -Vep /etc/signify/openbsd-${osver}-base.pub -x ${diff} -m - \
+	[[ -z ${src} ]] && touch ${diff}.log || signify -Vep \
+		/etc/signify/openbsd-${osver}-base.pub -x ${diff} -m - \
 		| patch -d ${src} -f -p0 -z .orig~${patch} > ${diff}.log
 	if [[ $? -ne 0 ]]; then
 		echo 'Failed.'
 		mv ${diff}.log ${diff}.log.err
 		exit 1
 	fi
+	rm -f ${diff}.log.err
 	echo 'Done.'
 done
